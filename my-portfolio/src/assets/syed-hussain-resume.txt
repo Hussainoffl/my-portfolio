@@ -1,0 +1,8 @@
+Syed Hussain
+Independent Freelance Frontend Developer
+
+I build modern, responsive business websites using React, Vite, JavaScript, and Tailwind CSS.
+
+Services: Business websites, landing pages, dashboards, frontend development, API integration, and website maintenance.
+
+Contact: syedhussain.dev@gmail.com

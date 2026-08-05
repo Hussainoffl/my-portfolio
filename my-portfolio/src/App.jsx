@@ -1,12 +1,14 @@
 import { AnimatePresence } from 'framer-motion';
-import { useEffect, useState } from 'react';
+import { lazy, Suspense, useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import PageLoader from './components/PageLoader';
 import ScrollProgress from './components/ScrollProgress';
-import Home from './pages/Home';
+import WhatsAppButton from './components/WhatsAppButton';
+
+const Home = lazy(() => import('./pages/Home'));
 
 /* =====================
    Application Shell
@@ -27,9 +29,12 @@ export default function App() {
       <AnimatePresence>{isLoading && <PageLoader />}</AnimatePresence>
       <ScrollProgress />
       <Navbar />
-      <Routes>
-        <Route path="*" element={<Home />} />
-      </Routes>
+      <Suspense fallback={<PageLoader />}>
+        <Routes>
+          <Route path="*" element={<Home />} />
+        </Routes>
+      </Suspense>
+      <WhatsAppButton />
       <Footer />
     </BrowserRouter>
   );

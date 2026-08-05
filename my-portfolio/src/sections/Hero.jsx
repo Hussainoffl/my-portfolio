@@ -38,22 +38,21 @@ function HeroContent() {
         className="mb-5 flex items-center gap-2 text-sm font-medium text-blue"
       >
         <span className="h-px w-8 bg-blue" />
-        Independent frontend developer
+        Full Stack Web Developer • React • Node.js • JavaScript
       </motion.p>
       <motion.h1
         variants={contentAnimation}
         className="font-display max-w-3xl text-5xl font-semibold leading-[1.05] tracking-normal text-white sm:text-6xl lg:text-7xl"
       >
         Hi, I'm Syed Hussain.
-        <br />I build websites that make your{' '}
-        <span className="text-blue">business look established.</span>
+        <br />
+        I build <span className="text-blue">modern web applications</span> for businesses.
       </motion.h1>
       <motion.p
         variants={contentAnimation}
         className="mt-7 max-w-xl text-lg leading-8 text-slate-400"
       >
-        I help local businesses and growing teams turn their website into a clear, credible reason
-        for customers to get in touch.
+        I'm a Full Stack Web Developer specializing in React, JavaScript, Node.js, and modern web technologies. I build responsive, scalable web applications with clean code and seamless API integration.
       </motion.p>
       <motion.div variants={contentAnimation} className="mt-9 flex flex-wrap gap-3">
         <Button href="#projects">See My Work</Button>

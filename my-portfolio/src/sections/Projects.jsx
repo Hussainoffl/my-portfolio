@@ -14,13 +14,18 @@ import { projectCategories, projects } from '../data/projects';
 /** Displays business-relevant demo projects with filtering and detail previews. */
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('All');
+  const [searchQuery, setSearchQuery] = useState('');
   const [selectedProject, setSelectedProject] = useState(null);
   const visibleProjects = useMemo(
     () =>
-      activeCategory === 'All'
-        ? projects
-        : projects.filter((project) => project.category === activeCategory),
-    [activeCategory],
+      projects.filter(
+        (project) =>
+          (activeCategory === 'All' || project.category === activeCategory) &&
+          `${project.title} ${project.type} ${project.description}`
+            .toLowerCase()
+            .includes(searchQuery.toLowerCase()),
+      ),
+    [activeCategory, searchQuery],
   );
 
   return (
@@ -31,7 +36,12 @@ export default function Projects() {
           title="Web experiences built for the way businesses grow."
           description="Demo projects designed around the needs of restaurants, clinics, hospitality brands, local services, and growing teams."
         />
-        <ProjectFilters activeCategory={activeCategory} onChange={setActiveCategory} />
+        <ProjectFilters
+          activeCategory={activeCategory}
+          searchQuery={searchQuery}
+          onCategoryChange={setActiveCategory}
+          onSearchChange={setSearchQuery}
+        />
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {visibleProjects.map((project) => (
             <ProjectCard
@@ -41,6 +51,11 @@ export default function Projects() {
             />
           ))}
         </div>
+        {visibleProjects.length === 0 && (
+          <p className="rounded-lg border border-dashed border-line p-8 text-center text-slate-400">
+            No projects match that search. Try another business type or keyword.
+          </p>
+        )}
       </Container>
       <ProjectModal project={selectedProject} onClose={() => setSelectedProject(null)} />
     </section>
@@ -48,19 +63,29 @@ export default function Projects() {
 }
 
 /** Renders the selectable business-category filters. */
-function ProjectFilters({ activeCategory, onChange }) {
+function ProjectFilters({ activeCategory, searchQuery, onCategoryChange, onSearchChange }) {
   return (
-    <div className="mb-8 flex flex-wrap gap-2">
-      {projectCategories.map((category) => (
-        <button
-          type="button"
-          key={category}
-          onClick={() => onChange(category)}
-          className={`rounded-md px-4 py-2 text-sm font-semibold transition ${activeCategory === category ? 'bg-blue text-white' : 'border border-line bg-panel/50 text-slate-300 hover:border-blue/50'}`}
-        >
-          {category}
-        </button>
-      ))}
+    <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-wrap gap-2">
+        {projectCategories.map((category) => (
+          <button
+            type="button"
+            key={category}
+            onClick={() => onCategoryChange(category)}
+            className={`rounded-md px-4 py-2 text-sm font-semibold transition ${activeCategory === category ? 'bg-blue text-white' : 'border border-line bg-panel/50 text-slate-300 hover:border-blue/50'}`}
+          >
+            {category}
+          </button>
+        ))}
+      </div>
+      <input
+        type="search"
+        value={searchQuery}
+        onChange={(event) => onSearchChange(event.target.value)}
+        placeholder="Search projects"
+        aria-label="Search projects"
+        className="w-full rounded-md border border-line bg-panel/50 px-4 py-2 text-sm text-white outline-none placeholder:text-slate-500 focus:border-blue sm:max-w-52"
+      />
     </div>
   );
 }
