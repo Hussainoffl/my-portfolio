@@ -128,22 +128,40 @@ function ProjectCard({ project, onOpen }) {
           </div>
         </div>
       </button>
-      <div className="flex gap-4 border-t border-white/7 px-5 py-4">
+      <div className="flex flex-wrap gap-3 border-t border-white/7 px-5 py-4">
         <button
           type="button"
           onClick={onOpen}
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-blue hover:text-blue-300"
         >
-          View project <HiArrowUpRight />
+          View Details <HiArrowUpRight />
         </button>
         <a
-          href="https://github.com/"
+          href={project.github || '#'}
           target="_blank"
           rel="noreferrer"
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-300 hover:text-white"
         >
           <HiCodeBracket /> GitHub
         </a>
+        {project.live ? (
+          <a
+            href={project.live}
+            target="_blank"
+            rel="noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-300 hover:text-white"
+          >
+            <HiArrowUpRight /> Live Demo
+          </a>
+        ) : (
+          <button
+            type="button"
+            disabled
+            className="inline-flex cursor-not-allowed items-center gap-1.5 text-sm font-semibold text-slate-500"
+          >
+            <HiArrowUpRight /> Coming Soon
+          </button>
+        )}
       </div>
     </motion.article>
   );

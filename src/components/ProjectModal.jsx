@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { HiCheckCircle, HiCodeBracket, HiXMark } from 'react-icons/hi2';
+import { HiArrowUpRight, HiCheckCircle, HiCodeBracket, HiXMark } from 'react-icons/hi2';
 
 /* =====================
    Project Details Modal
@@ -54,7 +54,7 @@ export default function ProjectModal({ project, onClose }) {
                 <div>
                   <h3 className="font-semibold text-white">Key features</h3>
                   <ul className="mt-3 space-y-2">
-                    {project.features.map((feature) => (
+                    {project.features?.map((feature) => (
                       <li key={feature} className="flex items-center gap-2 text-sm text-slate-300">
                         <HiCheckCircle className="text-blue" />
                         {feature}
@@ -65,7 +65,7 @@ export default function ProjectModal({ project, onClose }) {
                 <div>
                   <h3 className="font-semibold text-white">Technologies</h3>
                   <div className="mt-3 flex flex-wrap gap-2">
-                    {project.tech.map((technology) => (
+                    {project.tech?.map((technology) => (
                       <span
                         key={technology}
                         className="rounded bg-white/5 px-3 py-1.5 text-sm text-slate-300"
@@ -76,7 +76,7 @@ export default function ProjectModal({ project, onClose }) {
                   </div>
                 </div>
               </div>
-              <div className="mt-8 flex gap-5 border-t border-white/10 pt-5">
+              <div className="mt-8 flex flex-wrap gap-4 border-t border-white/10 pt-5">
                 <a
                   href="#contact"
                   onClick={onClose}
@@ -85,13 +85,31 @@ export default function ProjectModal({ project, onClose }) {
                   Discuss a similar project
                 </a>
                 <a
-                  href="https://github.com/"
+                  href={project.github || '#'}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center gap-1.5 font-semibold text-slate-300 hover:text-white"
                 >
-                  <HiCodeBracket /> GitHub
+                  <HiCodeBracket /> GitHub Repository
                 </a>
+                {project.live ? (
+                  <a
+                    href={project.live}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 font-semibold text-slate-300 hover:text-white"
+                  >
+                    <HiArrowUpRight /> Live Demo
+                  </a>
+                ) : (
+                  <button
+                    type="button"
+                    disabled
+                    className="inline-flex cursor-not-allowed items-center gap-1.5 font-semibold text-slate-500"
+                  >
+                    <HiArrowUpRight /> Coming Soon
+                  </button>
+                )}
               </div>
             </div>
           </motion.article>

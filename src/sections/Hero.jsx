@@ -13,9 +13,9 @@ const contentAnimation = { hidden: { opacity: 0, y: 22 }, show: { opacity: 1, y:
 /** Introduces the developer and presents the portfolio's main actions. */
 export default function Hero() {
   return (
-    <section id="home" className="grid-glow relative isolate min-h-screen overflow-hidden pt-28">
+    <section id="home" className="grid-glow relative isolate min-h-screen overflow-hidden pt-20">
       <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_78%_35%,rgba(59,130,246,.20),transparent_22rem),radial-gradient(circle_at_18%_70%,rgba(14,116,144,.13),transparent_26rem)]" />
-      <Container className="grid min-h-[calc(100vh-7rem)] items-center gap-14 py-16 lg:grid-cols-[1.12fr_.88fr]">
+      <Container className="grid min-h-[calc(100vh-7rem)] items-center gap-14 py-8 lg:grid-cols-[1.12fr_.88fr]">
         <HeroContent />
         <ProfileIllustration />
       </Container>
@@ -54,7 +54,7 @@ function HeroContent() {
       >
         I'm a Full Stack Web Developer specializing in React, JavaScript, Node.js, and modern web technologies. I build responsive, scalable web applications with clean code and seamless API integration.
       </motion.p>
-      <motion.div variants={contentAnimation} className="mt-9 flex flex-wrap gap-3">
+      <motion.div variants={contentAnimation} className="mt-6 flex flex-wrap gap-3">
         <Button href="#projects">See My Work</Button>
         <Button href="#contact" variant="secondary" showIcon={false}>
           Start a Project
