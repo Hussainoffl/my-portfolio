@@ -14,10 +14,10 @@ const buttonVariants = {
 export default function Button({ children, href, variant = 'primary', showIcon = true }) {
   return (
     <motion.a
-      whileHover={{ y: -2 }}
-      whileTap={{ scale: 0.98 }}
+      whileHover={{ y: -2, scale: 1.03 }}
+      whileTap={{ scale: 0.97 }}
       href={href}
-      className={`inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold transition-colors ${buttonVariants[variant]}`}
+      className={`inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-semibold transition-[color,background-color,box-shadow] duration-200 hover:shadow-[0_12px_36px_rgba(59,130,246,.38)] ${buttonVariants[variant]}`}
     >
       {children}
       {showIcon && <HiArrowUpRight className="text-lg" />}

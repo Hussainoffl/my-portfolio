@@ -4,8 +4,9 @@
 
 export const navigationLinks = [
   { label: 'Home', href: '#home' },
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Experience', href: '#experience' },
+  { label: 'Services', href: '#services' },
+  { label: 'Work', href: '#projects' },
+  { label: 'Process', href: '#process' },
+  { label: 'Pricing', href: '#pricing' },
   { label: 'Contact', href: '#contact' },
 ];

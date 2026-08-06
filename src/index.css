@@ -17,6 +17,7 @@ body {
   min-width: 320px;
   background: #070b14;
   color: #d7e1f0;
+  overflow-x: hidden;
 }
 * {
   box-sizing: border-box;
@@ -35,6 +36,66 @@ body {
   background-image: radial-gradient(rgba(148, 163, 184, 0.12) 0.7px, transparent 0.7px);
   background-size: 8px 8px;
 }
+.hero-atmosphere {
+  background-color: #070b14;
+}
+.hero-orb {
+  position: absolute;
+  z-index: -10;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 9999px;
+  filter: blur(36px);
+  opacity: 0.3;
+  will-change: transform;
+  animation: hero-drift 15s ease-in-out infinite alternate;
+}
+.hero-orb-one {
+  top: -14rem;
+  right: -8rem;
+  background: #2563eb;
+}
+.hero-orb-two {
+  bottom: -18rem;
+  left: -13rem;
+  background: #0e7490;
+  animation-delay: -7s;
+  animation-duration: 19s;
+}
+.hero-particles {
+  z-index: -9;
+  opacity: 0.36;
+  background-image:
+    radial-gradient(circle at 12% 24%, rgba(147, 197, 253, 0.9) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 78% 17%, rgba(96, 165, 250, 0.72) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 62% 73%, rgba(125, 211, 252, 0.7) 0 1px, transparent 1.5px),
+    radial-gradient(circle at 28% 82%, rgba(96, 165, 250, 0.65) 0 1px, transparent 1.5px);
+  background-size: 260px 260px, 330px 330px, 390px 390px, 460px 460px;
+  animation: particles-drift 22s linear infinite;
+}
+.hero-code-type {
+  display: inline-block;
+  width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #60a5fa;
+  animation: type-code 2.8s steps(43, end) 1.05s forwards, code-cursor 0.8s step-end infinite;
+}
+@keyframes hero-drift {
+  from { transform: translate3d(-2%, -1%, 0) scale(0.95); }
+  to { transform: translate3d(4%, 5%, 0) scale(1.08); }
+}
+@keyframes particles-drift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-32px, 24px, 0); }
+}
+@keyframes type-code {
+  to { width: 39ch; }
+}
+@keyframes code-cursor {
+  50% { border-color: transparent; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -44,5 +105,9 @@ body {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+  .hero-code-type {
+    width: auto;
+    border-right: 0;
   }
 }
