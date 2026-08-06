@@ -11,10 +11,11 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 body {
   margin: 0;
-  min-width: 320px;
+  min-width: 0;
   background: #070b14;
   color: #d7e1f0;
   overflow-x: hidden;
@@ -81,6 +82,16 @@ body {
   white-space: nowrap;
   border-right: 2px solid #60a5fa;
   animation: type-code 2.8s steps(43, end) 1.05s forwards, code-cursor 0.8s step-end infinite;
+}
+@media (max-width: 639px) {
+  .hero-code-type {
+    width: 100%;
+    overflow: visible;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    border-right: 0;
+    animation: none;
+  }
 }
 @keyframes hero-drift {
   from { transform: translate3d(-2%, -1%, 0) scale(0.95); }

@@ -22,7 +22,7 @@ export default function WhatsAppButton() {
       target="_blank"
       rel="noreferrer"
       aria-label="Start a WhatsApp conversation"
-      className="fixed bottom-5 right-5 z-50 grid size-14 place-items-center rounded-full bg-[#25D366] text-3xl text-white shadow-[0_12px_30px_rgba(37,211,102,.35)]"
+      className="fixed bottom-4 right-4 z-50 grid size-14 place-items-center rounded-full bg-[#25D366] text-3xl text-white shadow-[0_12px_30px_rgba(37,211,102,.35)] sm:bottom-5 sm:right-5"
       animate={{ scale: [1, 1.06, 1] }}
       transition={{ duration: 2.2, repeat: Infinity }}
       whileHover={{ scale: 1.12, rotate: 6 }}
