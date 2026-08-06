@@ -13,15 +13,15 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const hasScrolled = useScrollState();
   const headerClassName = hasScrolled
-    ? 'border-b border-white/8 bg-ink/75 py-3 backdrop-blur-xl'
-    : 'py-5';
+    ? 'border-b border-white/8 bg-ink/80 shadow-[0_8px_28px_rgba(2,6,23,.2)] backdrop-blur-xl'
+    : 'bg-ink/20 backdrop-blur-sm';
 
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
     <header className={`fixed inset-x-0 top-0 z-50 transition-all ${headerClassName}`}>
       <nav
-        className="mx-auto flex max-w-6xl items-center justify-between px-5"
+        className="relative mx-auto flex min-h-16 max-w-6xl items-center justify-between px-4 sm:px-5"
         aria-label="Main navigation"
       >
         <a href="#home" className="font-display text-lg font-bold tracking-normal text-white">
@@ -39,15 +39,15 @@ export default function Navbar() {
           ))}
         </div>
         <a
-          className="hidden rounded-md bg-blue px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-400 md:block"
+          className="hidden min-h-11 items-center rounded-md bg-blue px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-400 md:inline-flex"
           href="#contact"
         >
           Let's talk
         </a>
         <button
-          className="grid size-10 place-items-center rounded-md border border-line text-xl text-white md:hidden"
+          className="grid size-11 place-items-center rounded-md border border-line bg-panel/60 text-xl text-white transition-colors hover:border-blue/60 hover:bg-blue/10 md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          aria-label="Toggle navigation"
+          aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
           aria-expanded={isMenuOpen}
         >
           {isMenuOpen ? <HiXMark /> : <HiBars3 />}
@@ -64,21 +64,29 @@ function MobileMenu({ isOpen, onLinkClick }) {
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -8 }}
-          className="absolute left-5 right-5 top-[68px] rounded-lg border border-line bg-panel p-3 shadow-2xl md:hidden"
+          initial={{ opacity: 0, y: -12, scale: 0.98 }}
+          animate={{ opacity: 1, y: 0, scale: 1 }}
+          exit={{ opacity: 0, y: -12, scale: 0.98 }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="absolute left-0 right-0 top-full mt-2 rounded-xl border border-line bg-panel/95 p-2 shadow-2xl backdrop-blur-xl md:hidden"
         >
           {navigationLinks.map((link) => (
             <a
               key={link.label}
               onClick={onLinkClick}
-              className="block rounded-md px-4 py-3 text-sm text-slate-300 hover:bg-white/5 hover:text-white"
+              className="flex min-h-11 items-center rounded-lg px-4 py-2 text-sm font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
               href={link.href}
             >
               {link.label}
             </a>
           ))}
+          <a
+            onClick={onLinkClick}
+            href="#contact"
+            className="mt-2 flex min-h-11 items-center justify-center rounded-lg bg-blue px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-blue-400"
+          >
+            Let's talk
+          </a>
         </motion.div>
       )}
     </AnimatePresence>
